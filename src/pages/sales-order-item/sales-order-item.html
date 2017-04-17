@@ -1,0 +1,85 @@
+<!--
+  Generated template for the SalesOrderItem page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>新增销售订单</ion-title>
+ <ion-buttons start>
+      <button ion-button (click)="cancel()">
+        <span color="primary" showWhen="ios">
+          退出
+        </span>
+        <ion-icon name="md-close" showWhen="core,android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="done()" [disabled]="!isReadyToSave" strong>
+        <span color="primary" showWhen="ios">
+         保存
+        </span>
+        <ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+<ion-content >
+    <ion-list>
+      <ion-item>
+         <ion-label>单号</ion-label>
+        <ion-input type="text" placeholder="系统自动生成" name="code"></ion-input>
+      </ion-item>
+      <ion-item>
+         <ion-label>客户</ion-label>
+      <ion-select [(ngModel)]="item.customer">
+        <ion-option value="1">张三丰</ion-option>
+        <ion-option value="2">张无鸡</ion-option>
+        <ion-option value="3">苗人凤</ion-option>
+        <ion-option value="4">张大仙</ion-option>
+        <ion-option value="5">萧峰</ion-option>
+        <ion-option value="6">虚竹</ion-option>
+      </ion-select>
+      </ion-item> 
+
+       <ion-item> 
+         <ion-label>日期</ion-label>
+         <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="item.date"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>跟单人</ion-label>
+        <ion-input type="text"  name="item.man"></ion-input>
+      </ion-item>      
+    </ion-list>
+
+  <ion-card>
+    
+    <ion-card-header>
+     商品列表   
+    </ion-card-header>
+       <ion-buttons end>
+      <button ion-button icon-only (click)="addItem()" title="新增单据">
+        <ion-icon name="add" ></ion-icon>
+      </button>
+    </ion-buttons>
+  
+    <ion-list>
+      <ion-item>
+        <ion-icon name='cart' item-left></ion-icon>
+        Shopping
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name='cart' item-left></ion-icon>
+        Shopping
+      </ion-item>
+
+    </ion-list>
+  </ion-card>
+
+</ion-content>
