@@ -1,50 +1,40 @@
-import { Component } from '@angular/core';
-import { NavController, ToastController } from 'ionic-angular';
-
-import { TranslateService } from 'ng2-translate/ng2-translate';
-
-import { MainPage } from '../../pages/pages';
-import { User } from '../../providers/user';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {TabsPage} from '../tabs/tabs';
+import {UtilService} from '../../providers/util-service';
 
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html'
+    selector: 'page-login',
+    templateUrl: 'login.html'
 })
 export class LoginPage {
-  // The account fields for the login form.
-  // If you're using the username field with or without email, make
-  // sure to add it to the type
-  account: {email: string, password: string} = {
-    email: 'test@example.com',
-    password: 'test'
-  };
+    loginText: string;
+    user:any={};
+    constructor(public navCtrl: NavController, public navParams: NavParams,
+                private util: UtilService) {
+        this.loginText = "登录";
+       this.util.getByKey("userName").then((userName)=>{
+            this.user.userName=userName;
+        });
+        this.util.getByKey("passWord").then((passWord)=>{
+            console.log(passWord);
+            this.user.passWord=passWord;
+        });
 
-  // Our translated text strings
-  private loginErrorString: string;
+    }
+    loginClick() {
+        if(!this.user.userName||!this.user.passWord){
+            this.util.showToast("用户名或者密码不能为空");
+            return;
+        }
+        if (this.user.userName != "liuya" || this.user.passWord != "123456") {
+            this.util.showToast("用户名或者密码错误");
+        } else {
+            this.util.setByKey('userName',this.user.userName);
+            this.util.setByKey('passWord',this.user.passWord);
+            this.navCtrl.push(TabsPage);
+        }
+    }
 
-  constructor(public navCtrl: NavController,
-              public user: User,
-              public toastCtrl: ToastController,
-              public translateService: TranslateService) {
-
-    this.translateService.get('LOGIN_ERROR').subscribe((value) => {
-      this.loginErrorString = value;
-    })
-  }
-
-  // Attempt to login in through our User service
-  doLogin() {
-    this.user.login(this.account).subscribe((resp) => {
-      this.navCtrl.push(MainPage);
-    }, (err) => {
-      this.navCtrl.push(MainPage);
-      // Unable to log in
-      let toast = this.toastCtrl.create({
-        message: this.loginErrorString,
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
-    });
-  }
 }
+

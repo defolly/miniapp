@@ -1,39 +1,21 @@
+
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
-  </ion-navbar>
-
 </ion-header>
 
 
-<ion-content>
-  <form (submit)="doLogin()">
-    <ion-list>
+<ion-content padding style="background: url(assets/img/login_bg.png) center; background-size: cover;">
+  <div style="margin-top: 150px;">
+    <ion-item >
+      <ion-label floating >用户名</ion-label>
+      <ion-input type="text" [(ngModel)]="user.userName" clearInput ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating >密码</ion-label>
+      <ion-input type="password" [(ngModel)]="user.passWord" clearInput></ion-input>
+    </ion-item>
+  </div>
 
-      <ion-item>
-        <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
-        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
-      </ion-item>
-
-      <!--
-      Want to use a Username instead of an Email? Here you go:
-
-      <ion-item>
-        <ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="account.username"></ion-input>
-      </ion-item>
-      -->
-
-      <ion-item>
-        <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
-        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
-      </ion-item>
-
-      <div padding>
-        <button ion-button color="primary" block>{{ 'LOGIN_BUTTON' | translate }}</button>
-      </div>
-
-    </ion-list>
-  </form>
+  <div class="padding" style="margin-top: 50px;text-align: center">
+    <button tappable ion-button block round color="secondary" (click)="loginClick()">{{loginText}}</button>
+  </div>
 </ion-content>

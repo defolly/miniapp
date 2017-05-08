@@ -1,6 +1,8 @@
-<ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle="业务" tabIcon="apps"></ion-tab> 
-  <ion-tab [root]="tab2Root" tabTitle="报表" tabIcon="list-box"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="提醒" tabIcon="alarm"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="设置" tabIcon="settings"></ion-tab>
+<ion-tabs  #mainTabs>
+  <ion-tab [root]="tab1Root" tabUrlPath="work" tabTitle="业务" tabIcon="apps"></ion-tab> 
+  <ion-tab [root]="tab2Root" tabUrlPath="report" tabTitle="报表" tabIcon="list-box"></ion-tab>
+  <ion-tab [root]="tab3Root" tabUrlPath="alarm" tabTitle="提醒" tabIcon="alarm"></ion-tab>
+  <ion-tab [root]="tab4Root" tabUrlPath="setting" tabTitle="设置" tabIcon="settings"></ion-tab>
+
+
 </ion-tabs>
